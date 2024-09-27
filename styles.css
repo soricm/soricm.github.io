@@ -1,0 +1,11 @@
+body {
+    font-family: 'Times New Roman', Courier, Arial, sans-serif;
+    margin: 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+nav {
+    font-family: Courier, Arial, sans-serif;
+}
+
