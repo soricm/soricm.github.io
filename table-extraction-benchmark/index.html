@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents">
+  <meta name="description" content="A novel end-to-end benchmark evaluating 15 table extraction methods over 86k PDF pages across 4 heterogeneous datasets, with new evaluation metrics and two new annotated datasets.">
+  <meta name="keywords" content="table extraction, table detection, table structure recognition, PDF document analysis, document understanding, benchmark, evaluation metrics, vision language models, KDD 2026">
+  <meta name="author" content="Marijan Soric, Cécile Gracianne, Ioana Manolescu, Pierre Senellart">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DI ENS · Inria · BRGM">
+  <meta property="og:title" content="Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents">
+  <meta property="og:description" content="A novel end-to-end benchmark evaluating 15 table extraction methods over 86k PDF pages across 4 heterogeneous datasets, with new evaluation metrics and two new annotated datasets.">
+  <meta property="og:url" content="https://soricm.github.io/table-extraction-benchmark">
+  <meta property="og:image" content="https://soricm.github.io/table-extraction-benchmark/static/images/tradeoff.jpg-1.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Table Extraction Benchmark – Performance vs. computational cost tradeoff">
+  <meta property="article:published_time" content="2025-11-26T00:00:00.000Z">
+  <meta property="article:author" content="Marijan Soric">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="table extraction">
+  <meta property="article:tag" content="benchmark">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents">
+  <meta name="twitter:description" content="End-to-end benchmark of 15 table extraction methods over 86k PDF pages. New datasets, new metrics, new findings. KDD 2026.">
+  <meta name="twitter:image" content="https://soricm.github.io/table-extraction-benchmark/static/images/tradeoff.jpg-1.jpg">
+  <meta name="twitter:image:alt" content="Table Extraction Benchmark – Performance vs. cost tradeoff">
+
+  <!-- Academic / Citation -->
+  <meta name="citation_title" content="Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents">
+  <meta name="citation_author" content="Soric, Marijan">
+  <meta name="citation_author" content="Gracianne, Cécile">
+  <meta name="citation_author" content="Manolescu, Ioana">
+  <meta name="citation_author" content="Senellart, Pierre">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining">
+  <meta name="citation_doi" content="10.1145/3770855.3817462">
+  <meta name="citation_arxiv_id" content="2511.16134">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2511.16134.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents – Soric, Gracianne, Manolescu, Senellart | KDD 2026</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="static/images/logo_gitlab_new.png">
+  <link rel="apple-touch-icon" href="static/images/logo_gitlab_new.png">
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS – async -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents",
+    "description": "A novel end-to-end benchmark evaluating 15 table extraction methods over 86k PDF pages across 4 heterogeneous datasets, with new evaluation metrics and two new annotated datasets.",
+    "author": [
+      {"@type": "Person", "name": "Marijan Soric",    "affiliation": {"@type": "Organization", "name": "DI ENS, ENS, PSL University, CNRS, Inria"}},
+      {"@type": "Person", "name": "Cécile Gracianne", "affiliation": {"@type": "Organization", "name": "BRGM"}},
+      {"@type": "Person", "name": "Ioana Manolescu",  "affiliation": {"@type": "Organization", "name": "Inria, Institut Polytechnique de Paris"}},
+      {"@type": "Person", "name": "Pierre Senellart", "affiliation": {"@type": "Organization", "name": "DI ENS, ENS, PSL University, CNRS, Inria"}}
+    ],
+    "datePublished": "2026-08-09",
+    "publisher": {"@type": "Organization", "name": "ACM SIGKDD 2026"},
+    "url": "https://soricm.github.io/table-extraction-benchmark",
+    "image": "https://soricm.github.io/table-extraction-benchmark/static/images/tradeoff.jpg-1.jpg",
+    "keywords": ["table extraction", "table detection", "table structure recognition", "benchmark", "PDF documents", "vision language models", "evaluation metrics"],
+    "abstract": "Table Extraction (TE) consists in extracting tables from PDF documents, in a structured format enabling automatic processing. We propose a novel benchmark for assessing end-to-end TE methods over 86k pages, contributing new evaluation metrics, a rigorous evaluation process, and two new heterogeneous datasets. We benchmark 15 diverse models including classical libraries, computer vision models, and modern vision language models.",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "sameAs": "https://doi.org/10.1145/3770855.3817462"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar is-white is-fixed-top" role="navigation" aria-label="main navigation"
+       style="border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow-sm); z-index: 100;">
+    <div class="container is-max-desktop">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#" style="font-weight: 700; color: var(--text-primary); font-size: 0.95rem; gap: 0.5rem;">
+          <img src="static/images/logo_gitlab_new.png" alt="Table Extraction Benchmark logo" style="height: 28px; width: 28px; border-radius: 4px;">
+          Table Extraction Benchmark
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="#abstract">Abstract</a>
+          <a class="navbar-item" href="#approach">Approach</a>
+          <a class="navbar-item" href="#contributions">Contributions</a>
+          <a class="navbar-item" href="#benchmark">Benchmark</a>
+          <a class="navbar-item" href="#results">Results</a>
+          <a class="navbar-item" href="#BibTeX">BibTeX</a>
+          <div class="navbar-item">
+            <a href="https://arxiv.org/abs/2511.16134" target="_blank"
+               class="button is-small is-rounded is-dark">
+              <span class="icon is-small"><i class="ai ai-arxiv"></i></span>
+              <span>arXiv</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content" style="padding-top: 52px;">
+
+    <!-- ======= HERO ======= -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+
+              <figure class="image is-inline-block" style="margin-bottom: 1.5rem;">
+                <img src="static/images/logo_gitlab_new.png"
+                     alt="Table Extraction Benchmark"
+                     style="width: 120px; height: 120px; border-radius: 16px; box-shadow: var(--shadow-lg);"/>
+              </figure>
+
+              <h1 class="title is-1 publication-title">
+                Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents
+              </h1>
+
+              <!-- Venue badge -->
+              <div style="margin-bottom: 1.5rem;">
+                <a href="https://doi.org/10.1145/3770855.3817462" target="_blank" class="publication-venue" style="text-decoration: none;">
+                  <i class="fas fa-award" style="margin-right: 0.4rem;"></i>
+                  KDD 2026 &mdash; 32nd ACM SIGKDD &middot; Jeju Island, Republic of Korea
+                </a>
+              </div>
+
+              <!-- Authors -->
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://soricm.github.io/" target="_blank">Marijan Soric</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com/citations?user=ojjsxigAAAAJ&hl=fr" target="_blank">Cécile Gracianne</a><sup>2</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://pages.saclay.inria.fr/ioana.manolescu/" target="_blank">Ioana Manolescu</a><sup>3</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://pierre.senellart.com" target="_blank">Pierre Senellart</a><sup>1</sup>
+                </span>
+              </div>
+
+              <!-- Affiliations -->
+              <div class="is-size-6 publication-authors" style="color: var(--text-secondary); margin-top: 0.5rem; margin-bottom: 1.5rem;">
+                <sup>1</sup>DI ENS, ENS, PSL University, CNRS, Inria &nbsp;&nbsp;
+                <sup>2</sup>BRGM &nbsp;&nbsp;
+                <sup>3</sup>Inria, Institut Polytechnique de Paris
+              </div>
+
+              <!-- Links -->
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2511.16134.pdf" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2511.16134" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-gitlab"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://doi.org/10.5281/zenodo.20486310" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-database"></i></span>
+                    <span>Datasets</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://doi.org/10.1145/3770855.3817462" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="ai ai-acm"></i></span>
+                    <span>ACM DL</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= END HERO ======= -->
+
+
+    <!-- ======= ABSTRACT ======= -->
+    <section class="section hero is-light" id="abstract">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Table Extraction (TE) consists in extracting tables from PDF documents, in a structured
+                format which can be automatically processed. While numerous TE tools exist, the variety
+                of methods and techniques makes it difficult for users to choose the most appropriate one.
+                We propose a novel benchmark for assessing end-to-end TE methods (from PDF to the final
+                table) over 86k pages. We contribute an analysis of TE evaluation metrics, and a novel,
+                rigorous evaluation process, which allows scoring each TE sub-task as well as end-to-end
+                TE, and captures model uncertainty. Along with a prior dataset, our benchmark comprises
+                two new heterogeneous datasets of 39k samples. We run our benchmark on diverse models,
+                including off-the-shelf libraries, tools, computer vision-based models and modern
+                approaches using general and specialized vision language models. The results demonstrate
+                that TE remains challenging: current methods suffer from a lack of generalizability when
+                facing heterogeneous data, and from limitations in robustness and interpretability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= END ABSTRACT ======= -->
+
+
+    <!-- ======= APPROACH ======= -->
+    <section class="section" id="approach">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Approach</h2>
+            <figure class="image">
+              <img src="static/images/block-diagram.png"
+                   alt="Pipeline diagram: prior approaches evaluate TD and TSR independently on separate datasets; our approach benchmarks 15 end-to-end models on the same documents with new TE metrics"
+                   loading="lazy"
+                   style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); max-width: 100%; height: auto;"/>
+            </figure>
+            <p style="margin-top: 1.25rem; color: var(--text-secondary); font-size: 0.95rem;">
+              <strong>Prior approaches</strong> evaluate Table Detection (TD) and Table Structure Recognition (TSR)
+              independently, each on its own dataset. <strong>Our approach</strong> feeds TD output directly into TSR
+              and scores the full pipeline on the same documents, using new end-to-end TE metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= END APPROACH ======= -->
+
+
+    <!-- ======= CONTRIBUTIONS ======= -->
+    <section class="section" id="contributions">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Contributions</h2>
+            <div class="content has-text-left" style="font-size: 1.05rem; line-height: 1.85; color: var(--text-secondary);">
+              <p>
+                <strong style="color: var(--primary-color); font-size: 1.1rem;">&#8594;</strong>&ensp;
+                <strong>End-to-end evaluation framework</strong> that jointly scores Table Detection and Table
+                Structure Recognition in a single pipeline, capturing model uncertainty through
+                calibration metrics (D-ECE) and new TE-specific Precision/Recall.
+              </p>
+              <p>
+                <strong style="color: var(--primary-color); font-size: 1.1rem;">&#8594;</strong>&ensp;
+                <strong>Two new heterogeneous datasets:</strong>
+                <em>Table-arXiv</em> (37k samples from 20&nbsp;years of arXiv preprints across all domains)
+                and <em>Table-BRGM</em> (256 pages of domain-specific French geological reports produced
+                with Word), totalling 39k newly annotated samples with HTML ground-truth.
+              </p>
+              <p>
+                <strong style="color: var(--primary-color); font-size: 1.1rem;">&#8594;</strong>&ensp;
+                <strong>Comprehensive benchmark of 15 methods</strong> spanning classical libraries
+                (Camelot, PyMuPDF, PDFPlumber, Grobid), deep-learning models (TATR, XY+TATR,
+                VGT+TATR, Docling), general VLMs (GPT-4.1, Gemini&nbsp;2.5&nbsp;Pro, Qwen2.5-VL),
+                and expert VLMs (TabPedia, MonkeyOCR, GOT, Mathpix).
+              </p>
+              <p>
+                <strong style="color: var(--primary-color); font-size: 1.1rem;">&#8594;</strong>&ensp;
+                <strong>Key findings on generalizability and calibration:</strong> VLMs hallucinate
+                on heterogeneous data; heuristic and lightweight methods remain competitive on
+                specific layouts; VGT produces the best-calibrated confidence scores while TATR
+                is poorly calibrated; no method achieves F<sub>1</sub><sup>TEDS</sup> &gt;&nbsp;90%.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= END CONTRIBUTIONS ======= -->
+
+
+    <!-- ======= BENCHMARK OVERVIEW ======= -->
+    <section class="section hero is-light" id="benchmark">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3">Benchmark Overview</h2>
+            <p class="is-size-6" style="color: var(--text-secondary); margin-bottom: 2rem;">
+              15 end-to-end methods &middot; 4 heterogeneous datasets &middot; 86k pages &middot; 4 model categories
+            </p>
+            <figure class="image">
+              <img src="static/images/models.png"
+                   alt="Overview of 15 end-to-end table extraction methods grouped by category"
+                   loading="lazy"
+                   style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); max-width: 100%; height: auto;"/>
+            </figure>
+            <p style="margin-top: 1.25rem; color: var(--text-secondary); font-size: 0.95rem;">
+              Methods range from simple rule-based Python libraries to object-detection systems,
+              general large VLMs, and specialized expert VLMs.
+              Datasets include PubTables (46k pages), Table-arXiv (37k), Table-BRGM (2k), and ICDAR-2013 (238 pages).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======= END BENCHMARK OVERVIEW ======= -->
+
+
+    <!-- ======= RESULTS ======= -->
+    <section class="section" id="results">
+      <div class="container is-max-desktop">
+
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3">Results</h2>
+          </div>
+        </div>
+
+        <!-- Tradeoff -->
+        <div class="columns is-centered" style="margin-bottom: 3rem;">
+          <div class="column has-text-centered">
+            <figure class="image">
+              <img src="static/images/tradeoff.jpg"
+                   alt="Performance vs. computational cost tradeoff (F1-TEDS vs cost in USD/1k pages)"
+                   loading="lazy"
+                   style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); max-width: 100%; height: auto;"/>
+            </figure>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+              <strong>Performance vs. computational cost</strong> on Table-arXiv.
+              The Pareto front is mainly composed of Grobid, PyMuPDF, XY, TATR, Docling, MonkeyOCR, and Mathpix.
+            </p>
+          </div>
+        </div>
+
+        <!-- TD and TE figures side by side -->
+        <div class="columns is-centered is-variable is-5">
+          <div class="column has-text-centered">
+            <figure class="image">
+              <img src="static/images/TD.png"
+                   alt="Table Detection results: Precision-Recall curves across all four datasets"
+                   loading="lazy"
+                   style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto;"/>
+            </figure>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+              <strong>Table Detection (TD)</strong><br>
+              Precision–Recall curves across all four datasets.
+              Probabilistic models are shown as curves; non-probabilistic as dots.
+            </p>
+          </div>
+          <div class="column has-text-centered">
+            <figure class="image">
+              <img src="static/images/TE.png"
+                   alt="End-to-end Table Extraction results: P-Top vs R-Top curves across all datasets"
+                   loading="lazy"
+                   style="border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto;"/>
+            </figure>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.95rem;">
+              <strong>End-to-End Table Extraction (TE)</strong><br>
+              P<sup>Top</sup>–R<sup>Top</sup> curves weighted by GriTS Topology score
+              across all four datasets.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- ======= END RESULTS ======= -->
+
+
+    <!-- ======= BIBTEX ======= -->
+    <section class="section hero is-light" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@inproceedings{soric2026benchmarking,
+  title     = {Benchmarking Table Extraction from Heterogeneous Scientific {PDF} Documents},
+  author    = {Marijan Soric and C{\'e}cile Gracianne and Ioana Manolescu and Pierre Senellart},
+  booktitle = {Proceedings of the 32nd {ACM} {SIGKDD} Conference on Knowledge Discovery and Data Mining},
+  year      = {2026},
+  doi       = {10.1145/3770855.3817462},
+  eprint    = {2511.16134},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DB},
+  url       = {https://arxiv.org/abs/2511.16134},
+}</code></pre>
+      </div>
+    </section>
+    <!-- ======= END BIBTEX ======= -->
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>
+              which was adopted from the
+              <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the footer.
+              <br>
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
