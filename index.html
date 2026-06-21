@@ -1,111 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marijan Soric</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marijan Soric</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+</head>
+<body>
 
-  <body>
-    <h1>Marijan Soric</h1>
-    <h2>Full name: Marijan Sorić</h2>
-    <p>I am a Ph.D. candidate at <a href="https://team.inria.fr/valda/">Inria Valda</a> (Inria Paris, DI ENS, CNRS), 
-    <a href="https://team.inria.fr/cedar/">Inria CEDAR</a> (Inria Saclay, LIX, CNRS) and 
-    <a href="https://www.ens.psl.eu/en">École normal supérieure</a> (<a href="https://www.ens.psl.eu/en">ENS</a> - <a href="https://psl.eu/en">PSL University</a>). </br>
-    The Ph.D. is funded by the <a href="https://www.inria.fr/en/geolaug">GéolAug</a> project, coming from a collaboration between 
-    <a href="https://www.inria.fr/en">Inria</a> and <a href="https://www.brgm.fr/en">BRGM</a> (French National Geological Survey).</br>
+  <!-- ─── Header ─── -->
+  <header id="site-header">
+    <a class="site-name" href="#">Marijan Soric</a>
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<a href="https://theses.fr/s413120">PhD:</a> Exploitation and Structuring of Heterogeneous Geological Data and Knowledge.</br>
-Thesis supervisors: <a href="https://pierre.senellart.com">Pierre Senellart</a>, <a href="https://pages.saclay.inria.fr/ioana.manolescu/">Ioana Manolescu</a> and <a href="https://scholar.google.com/citations?user=ojjsxigAAAAJ&hl=fr">Cécile Gracianne</a>.</p>
+  <!-- ─── Hero ─── -->
+  <section id="hero">
+    <div id="hero-name">
+      <h1>Marijan<br>Soric</h1>
+    </div>
+    <div id="hero-info">
+      <p class="hero-role">Ph.D. Candidate</p>
+      <p>
+        <a href="https://team.inria.fr/valda/">Inria Valda</a> (Inria Paris, DI ENS, CNRS) and
+        <a href="https://team.inria.fr/cedar/">Inria CEDAR</a> (Inria Saclay, LIX, CNRS).<br>
+        <a href="https://www.ens.psl.eu/en">École Normale Supérieure</a> &thinsp;·&thinsp; <a href="https://psl.eu/en">PSL University</a>.
+      </p>
+      <p>
+        <strong><a href="https://theses.fr/s413120">PhD thesis:</a></strong>
+        Exploitation and Structuring of Heterogeneous Geological Data and Knowledge.<br>
+        Funded by <a href="https://www.inria.fr/en/geolaug">GéolAug</a>
+        (<a href="https://www.inria.fr/en">Inria</a> and <a href="https://www.brgm.fr/en">BRGM</a>,
+        French National Geological Survey).
+      </p>
+      <p>
+        Supervisors:
+        <a href="https://pierre.senellart.com">Pierre Senellart</a>,
+        <a href="https://pages.saclay.inria.fr/ioana.manolescu/">Ioana Manolescu</a>,
+        <a href="https://scholar.google.com/citations?user=ojjsxigAAAAJ&hl=fr">Cécile Gracianne</a>.
+      </p>
+      <p class="hero-meta">
+        Previously: <a href="https://www.ec-lyon.fr/en">École Centrale de Lyon</a> (2021–2024)
+        &thinsp;·&thinsp; <a href="https://www.ntnu.edu">NTNU</a> (2024, exchange).
+      </p>
+    </div>
+  </section>
 
-    <p>
-      Previously at <a href="https://www.ec-lyon.fr/en">École Centrale de Lyon</a> (2021–2024)
-      and <a href="https://www.ntnu.edu">NTNU</a> (2024, exchange).
-    </p>
+  <!-- ─── Research ─── -->
+  <section id="research">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <span class="section-name">Research</span>
+    </div>
 
-    <hr>
-    <h3 id="research">Research</h3>
+    <!-- Conference Papers -->
+    <div class="papers-group">
+      <h3 class="papers-category">Conference Papers</h3>
 
-    <h4><u>Conference Papers</u></h4>
-    <ol>
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">01</span>
+          <span class="paper-venue-tag">KDD 2026 &thinsp;·&thinsp; ACM SIGKDD</span>
+        </div>
+        <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/soric2026benchmarking.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta">
+            <span class="paper-full-venue">Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026). ACM, 2026.</span>
+            <div class="paper-authors">Marijan Soric, Cécile Gracianne, Ioana Manolescu, Pierre Senellart.</div>
+          </div>
+          <div class="paper-links">
+            <a href="./documents/soric2026benchmarking.pdf">Paper</a>
+            <a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark/">Code</a>
+            <a href="https://huggingface.co/datasets/marijanic/table-extraction-scientific-datasets">Dataset</a>
+            <a href="https://soricm.github.io/table-extraction-benchmark/">Website</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Preprints -->
+    <div class="papers-group">
+      <h3 class="papers-category">Preprints</h3>
+
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">01</span>
+          <span class="paper-venue-tag">arXiv &thinsp;·&thinsp; 2025</span>
+        </div>
+        <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific Documents</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/preprint_soric15.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta">
+            <div class="paper-authors">Marijan Soric, Cécile Gracianne, Ioana Manolescu, Pierre Senellart.</div>
+          </div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/pdf/2511.16134">Preprint</a>
+            <a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark/">Code</a>
+            <a href="https://huggingface.co/datasets/marijanic/table-extraction-scientific-datasets">Dataset</a>
+            <a href="https://soricm.github.io/table-extraction-benchmark/">Website</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">02</span>
+          <span class="paper-venue-tag">Master Thesis &thinsp;·&thinsp; 2025</span>
+        </div>
+        <div class="paper-title">Understanding and Extracting Table Information from BRGM Documents</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/master-thesis.pdf"></div>
+          <div class="page-strip" data-pdf="./documents/TFE_slides.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta">
+            <span class="paper-full-venue">École Centrale de Lyon / Inria, 2025.</span>
+            <div class="paper-authors">Marijan Soric.</div>
+          </div>
+          <div class="paper-links">
+            <a href="https://inria.hal.science/hal-04974179">HAL</a>
+            <a href="https://inria.hal.science/hal-04974179v1/document">Report</a>
+            <a href="./documents/TFE_slides.pdf">Slides</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Talks -->
+    <div class="papers-group">
+      <h3 class="papers-category">Talks</h3>
+
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">01</span>
+          <span class="paper-venue-tag">Valda Seminar &thinsp;·&thinsp; ENS Paris &thinsp;·&thinsp; 23 May 2025</span>
+        </div>
+        <div class="paper-title">Benchmark: Extracting Table Information from Scientific Documents</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/SeminarValda_slides.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta"></div>
+          <div class="paper-links">
+            <a href="./documents/SeminarValda_slides.pdf">Slides</a>
+            <a href="https://team.inria.fr/valda/valda-seminar-marijan-soric/">Link</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Posters -->
+    <div class="papers-group">
+      <h3 class="papers-category">Posters</h3>
+
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">01</span>
+          <span class="paper-venue-tag">KDD 2026 PhD Consortium</span>
+        </div>
+        <div class="paper-title">Towards Probabilistic Georeferencing of Geological Maps from PDF Reports</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/paper_georef.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta"></div>
+          <div class="paper-links">
+            <a href="./documents/paper_georef.pdf">Paper</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper">
+        <div class="paper-header">
+          <span class="paper-n">02</span>
+          <span class="paper-venue-tag">BRGM GéoNum Seminar &thinsp;·&thinsp; 2025</span>
+        </div>
+        <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific Documents</div>
+        <div class="strip-wrap">
+          <div class="page-strip" data-pdf="./documents/PosterGeoNum.pdf"></div>
+        </div>
+        <div class="paper-footer">
+          <div class="paper-meta"></div>
+          <div class="paper-links">
+            <a href="./documents/PosterGeoNum.pdf">Poster</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── Teaching ─── -->
+  <section id="teaching">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <span class="section-name">Teaching</span>
+    </div>
+    <ul class="teaching-list">
       <li>
-        <b>Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents.</b><br>
-        In: <i>Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD 2026)</i>. ACM (2026).
-        [<a href="./documents/soric2026benchmarking.pdf">Paper</a>][<a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark/">Code</a>][<a href="https://huggingface.co/datasets/marijanic/table-extraction-scientific-datasets">Dataset</a>][<a href="https://soricm.github.io/table-extraction-benchmark/">Website</a>]<br>
-        <i>Marijan Soric, Cécile Gracianne, Ioana Manolescu, Pierre Senellart.</i>
-      </li>
-    </ol>
-
-    <h4><u>Preprints</u></h4>
-    <ol>
-      <li>
-        <b>Benchmarking Table Extraction from Heterogeneous Scientific Documents.</b><br>
-        arXiv (2025).
-        [<a href="https://arxiv.org/pdf/2511.16134">Preprint</a>][<a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark/">Code</a>][<a href="https://huggingface.co/datasets/marijanic/table-extraction-scientific-datasets">Dataset</a>][<a href="https://soricm.github.io/table-extraction-benchmark/">Website</a>]<br>
-        <i>Marijan Soric, Cécile Gracianne, Ioana Manolescu, Pierre Senellart.</i>
+        <span class="t-period">Spring 2025</span>
+        <span class="t-course">
+          <em>Differential calculus</em>,
+          <a href="https://psl.eu/formation/cpes-psl-henri-IV">CPES 2</a>,
+          <a href="https://lycee-henri4.com/">Lycée Henri IV</a> / <a href="https://psl.eu/en">PSL University</a>
+          (Tutorials)
+        </span>
       </li>
       <li>
-        <b>Understanding and Extracting Table Information from BRGM Documents.</b><br>
-        Master Thesis Report, École Centrale de Lyon / Inria (2025).
-        [<a href="https://inria.hal.science/hal-04974179">HAL</a>][<a href="https://inria.hal.science/hal-04974179v1/document">Report</a>][<a href="./documents/TFE_slides.pdf">Slides</a>]<br>
-        <i>Marijan Soric</i>
-      </li>
-    </ol>
-
-    <h4><u>Talks</u></h4>
-    <ol>
-      <li>
-        <b>Benchmark: Extracting Table Information from Scientific Documents.</b><br>
-        <i>Valda Seminar</i>, ENS, Paris, 23 May 2025.
-        [<a href="./documents/SeminarValda_slides.pdf">Slides</a>][<a href="https://team.inria.fr/valda/valda-seminar-marijan-soric/">Link</a>]
-      </li>
-    </ol>
-
-    <h4><u>Posters</u></h4>
-    <ol>
-      <li>
-        <b>Towards Probabilistic Georeferencing of Geological Maps from PDF Reports.</b><br>
-        <i>KDD 2026 PhD Consortium</i>, 2026.
-        [<a href="./documents/paper_georef.pdf">Paper</a>]
+        <span class="t-period">2025–2026</span>
+        <span class="t-course">
+          <em>Programming</em>,
+          <a href="https://psl.eu/formation/cpes-psl-henri-IV">CPES 1</a>,
+          <a href="https://lycee-henri4.com/">Lycée Henri IV</a> / <a href="https://psl.eu/en">PSL University</a>
+          (Tutorials)
+        </span>
       </li>
       <li>
-        <b>Benchmarking Table Extraction from Heterogeneous Scientific Documents.</b><br>
-        <i>BRGM GéoNum Seminar</i>, 2025.
-        [<a href="./documents/PosterGeoNum.pdf">Poster</a>]
+        <span class="t-period">Sept 2025</span>
+        <span class="t-course">
+          <em>Introduction to programming</em>,
+          CPES 1,
+          <a href="https://louislegrand.fr/">Lycée Louis-le-Grand</a> / <a href="https://psl.eu/en">PSL University</a>
+          (Tutorials)
+        </span>
       </li>
-    </ol>
-
-    <hr>
-    <h3 id="teaching">Teaching</h3>
-    <ul>
-      <li>Spring 2025: <i>Differential calculus</i> in <a href="https://psl.eu/formation/cpes-psl-henri-IV">CPES 2</a>, joint program between <a href="https://lycee-henri4.com/">Lycée Henri IV</a> and <a href="https://psl.eu/en">PSL University</a> (Tutorials)</li>
-      <li>2025–2026: <i>Programming</i> in <a href="https://psl.eu/formation/cpes-psl-henri-IV">CPES 1</a>, joint program between <a href="https://lycee-henri4.com/">Lycée Henri IV</a> and <a href="https://psl.eu/en">PSL University</a> (Tutorials)</li>
-      <li>September 2025: <i>Introduction to programming</i> in <a href="https://psl.eu/formation/cpes-psl-henri-IV">CPES 1</a>, joint program between <a href="https://louislegrand.fr/">Lycée Louis-le-Grand</a> and <a href="https://psl.eu/en">PSL University</a> (Tutorials)</li>
     </ul>
+  </section>
 
-    <hr>
-    <h3 id="service">Professional/Academic Service</h3>
-    <ul>
-      <li><i>Assistant pedagogic secretary</i> for the <a href="https://banques-ecoles.fr/cms/filiere-mp/">oral entrance exams</a> of <a href="https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496">Classes préparatoires aux grandes écoles (CPGE)</a> into <a href="https://www.ens.psl.eu/">École Normale Supérieure</a> for Mathematics-Physics-Computer Science (MP-MPI) programs (Sessions 2024, 2025)</li>
+  <!-- ─── Service ─── -->
+  <section id="service">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <span class="section-name">Service</span>
+    </div>
+    <ul class="service-list">
+      <li>
+        <em>Assistant pedagogic secretary</em> for the
+        <a href="https://banques-ecoles.fr/cms/filiere-mp/">oral entrance exams</a> of
+        <a href="https://www.enseignementsup-recherche.gouv.fr/fr/classes-preparatoires-aux-grandes-ecoles-cpge-46496">Classes préparatoires aux grandes écoles (CPGE)</a>
+        into <a href="https://www.ens.psl.eu/">École Normale Supérieure</a>
+        for Mathematics-Physics-Computer Science (MP-MPI) programs.
+        Sessions 2024, 2025.
+      </li>
     </ul>
+  </section>
 
-    <hr>
-    <h3>Contact</h3>
-    My email: firstname [dot] lastname [at] inria [dot] fr</br>
-    Office:
-    <blockquote>
-    <address>
-	    DI - Ecole Normale Supérieure</br>
-	    45, rue d'Ulm</br>
-	    75 230 Paris Cedex 05 - France</br>
-	    Office: Escalier A, Hauts du DI, Bureau 4</br>
-    </address>
-  </blockquote>
+  <!-- ─── Contact ─── -->
+  <section id="contact">
+    <div class="section-label">
+      <span class="section-num">04</span>
+      <span class="section-name">Contact</span>
+    </div>
+    <div id="contact-grid">
+      <div id="contact-email">
+        <p>firstname [dot] lastname [at] inria [dot] fr</p>
+      </div>
+      <address>
+        DI &mdash; École Normale Supérieure<br>
+        45, rue d'Ulm<br>
+        75 230 Paris Cedex 05, France<br>
+        Office: Escalier A, Hauts du DI, Bureau 4
+      </address>
+    </div>
+  </section>
 
-    <hr>
-    <p>Last modified: <span id="lastup"></span> (Paris)</p>
-    <script>
-      document.getElementById("lastup").textContent = document.lastModified;
-    </script>
-  </body>
+  <!-- ─── Footer ─── -->
+  <footer>
+    <span>Last modified: <span id="lastup"></span></span>
+    <span>Marijan Soric &thinsp;·&thinsp; Paris</span>
+  </footer>
+
+  <script>
+    var hdr = document.getElementById('site-header');
+    window.addEventListener('scroll', function() {
+      hdr.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    document.getElementById('lastup').textContent = document.lastModified;
+
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+      document.querySelectorAll('.page-strip[data-pdf]').forEach(function(strip) {
+        var dpr      = window.devicePixelRatio || 1;
+        var displayH = 240;
+        pdfjsLib.getDocument(strip.dataset.pdf).promise.then(function(pdf) {
+          var items = [];
+          for (var p = 1; p <= pdf.numPages; p++) {
+            var canvas = document.createElement('canvas');
+            canvas.setAttribute('aria-label', 'Page ' + p);
+            strip.appendChild(canvas);
+            items.push({ canvas: canvas, pageNum: p });
+          }
+          items.forEach(function(item) {
+            pdf.getPage(item.pageNum).then(function(page) {
+              var vp0   = page.getViewport({ scale: 1 });
+              var scale = (displayH * dpr) / vp0.height;
+              var vp    = page.getViewport({ scale: scale });
+              item.canvas.width  = vp.width;
+              item.canvas.height = vp.height;
+              page.render({ canvasContext: item.canvas.getContext('2d'), viewport: vp });
+            });
+          });
+        });
+      });
+    }
+  </script>
+</body>
 </html>
