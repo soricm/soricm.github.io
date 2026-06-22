@@ -6,7 +6,6 @@
   <title>Marijan Soric</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
 </head>
 <body>
 
@@ -70,7 +69,7 @@
         </div>
         <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific PDF Documents</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/soric2026benchmarking.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/benchmarking/page" data-count="11"></div>
         </div>
         <div class="paper-footer">
           <div class="paper-meta">
@@ -98,7 +97,7 @@
         </div>
         <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific Documents</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/preprint_soric15.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/preprint/page" data-count="15"></div>
         </div>
         <div class="paper-footer">
           <div class="paper-meta">
@@ -120,8 +119,8 @@
         </div>
         <div class="paper-title">Understanding and Extracting Table Information from BRGM Documents</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/master-thesis.pdf"></div>
-          <div class="page-strip" data-pdf="./documents/TFE_slides.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/master-thesis/page" data-count="15"></div>
+          <!-- <div class="page-strip" data-base="./documents/pages/tfe-slides/page" data-count="15"></div> -->
         </div>
         <div class="paper-footer">
           <div class="paper-meta">
@@ -148,7 +147,7 @@
         </div>
         <div class="paper-title">Benchmark: Extracting Table Information from Scientific Documents</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/SeminarValda_slides.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/valda-slides/page" data-count="15"></div>
         </div>
         <div class="paper-footer">
           <div class="paper-meta"></div>
@@ -171,7 +170,7 @@
         </div>
         <div class="paper-title">Towards Probabilistic Georeferencing of Geological Maps from PDF Reports</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/paper_georef.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/paper-georef/page" data-count="3"></div>
         </div>
         <div class="paper-footer">
           <div class="paper-meta"></div>
@@ -188,7 +187,7 @@
         </div>
         <div class="paper-title">Benchmarking Table Extraction from Heterogeneous Scientific Documents</div>
         <div class="strip-wrap">
-          <div class="page-strip" data-pdf="./documents/PosterGeoNum.pdf"></div>
+          <div class="page-strip" data-base="./documents/pages/poster-geonum/page" data-count="1"></div>
         </div>
         <div class="paper-footer">
           <div class="paper-meta"></div>
@@ -288,34 +287,18 @@
 
     document.getElementById('lastup').textContent = document.lastModified;
 
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
-
-      document.querySelectorAll('.page-strip[data-pdf]').forEach(function(strip) {
-        var dpr      = window.devicePixelRatio || 1;
-        var displayH = 240;
-        pdfjsLib.getDocument(strip.dataset.pdf).promise.then(function(pdf) {
-          var items = [];
-          for (var p = 1; p <= pdf.numPages; p++) {
-            var canvas = document.createElement('canvas');
-            canvas.setAttribute('aria-label', 'Page ' + p);
-            strip.appendChild(canvas);
-            items.push({ canvas: canvas, pageNum: p });
-          }
-          items.forEach(function(item) {
-            pdf.getPage(item.pageNum).then(function(page) {
-              var vp0   = page.getViewport({ scale: 1 });
-              var scale = (displayH * dpr) / vp0.height;
-              var vp    = page.getViewport({ scale: scale });
-              item.canvas.width  = vp.width;
-              item.canvas.height = vp.height;
-              page.render({ canvasContext: item.canvas.getContext('2d'), viewport: vp });
-            });
-          });
-        });
-      });
-    }
+    document.querySelectorAll('.page-strip[data-base]').forEach(function(strip) {
+      var base  = strip.dataset.base;
+      var count = parseInt(strip.dataset.count, 10);
+      var pad   = String(count).length;
+      for (var i = 1; i <= count; i++) {
+        var img = document.createElement('img');
+        img.src     = base + '-' + String(i).padStart(pad, '0') + '.png';
+        img.alt     = 'Page ' + i;
+        img.loading = 'lazy';
+        strip.appendChild(img);
+      }
+    });
   </script>
 </body>
 </html>
