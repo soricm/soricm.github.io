@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soricm.github.io/sitemap.xml
