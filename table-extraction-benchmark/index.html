@@ -86,12 +86,85 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Preview Tooltip Styles -->
+  <style>
+    .hero {
+      overflow: visible;
+    }
+
+    .link-block {
+      position: relative;
+      display: inline-block;
+      overflow: visible;
+    }
+
+    .preview-tooltip {
+      display: none;
+      position: absolute;
+      top: calc(100% + 15px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 0;
+      margin: 0;
+      z-index: 10000;
+      min-width: 300px;
+      max-width: 400px;
+      overflow: visible;
+      white-space: normal;
+      pointer-events: none;
+    }
+
+    .preview-tooltip img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .preview-link:hover .preview-tooltip {
+      display: block;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .preview-tooltip {
+        background: #2a2a2a;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      }
+    }
+  </style>
+
   <!-- Scripts -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
+
+  <!-- Preview Tooltip Script -->
+  <script>
+    function setupPreviews() {
+      document.querySelectorAll('.preview-link').forEach((link) => {
+        const tooltip = link.querySelector('.preview-tooltip');
+        const imageUrl = link.getAttribute('data-preview-image');
+        if (!imageUrl || !tooltip) return;
+
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = 'Preview';
+        img.loading = 'lazy';
+        tooltip.appendChild(img);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupPreviews);
+    } else {
+      setupPreviews();
+    }
+  </script>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -212,54 +285,61 @@
 
               <!-- Links -->
               <div class="publication-links">
-                <span class="link-block">
+                <span class="link-block preview-link" data-preview-image="static/images/page-01.png">
                   <a href="https://arxiv.org/pdf/2511.16134.pdf" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-file-pdf"></i></span>
                     <span>Paper</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
+                <span class="link-block preview-link" data-preview-image="static/images/arxiv.png">
                   <a href="https://arxiv.org/abs/2511.16134" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="ai ai-arxiv"></i></span>
                     <span>arXiv</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
-                  <a href="https://gitlab.inria.fr/msoric/table-extraction-benchmark" target="_blank" rel="noopener noreferrer"
+                <span class="link-block preview-link" data-preview-image="static/images/code.png">
+                  <a href="https://github.com/soricm/table-extraction-benchmark" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon"><i class="fab fa-gitlab"></i></span>
+                    <span class="icon"><i class="fab fa-github"></i></span>
                     <span>Code</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
-                  <a href="https://doi.org/10.5281/zenodo.20486310" target="_blank" rel="noopener noreferrer"
+                <span class="link-block preview-link" data-preview-image="static/images/dataset.png">
+                  <a href="https://huggingface.co/datasets/marijanic/table-extraction-scientific-datasets" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-database"></i></span>
                     <span>Datasets</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
+                <span class="link-block preview-link" data-preview-image="static/images/acm.png">
                   <a href="https://doi.org/10.1145/3770855.3817462" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="ai ai-acm"></i></span>
                     <span>ACM DL</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
+                <span class="link-block preview-link" data-preview-image="static/images/demo.png">
                   <a href="https://table-extraction-benchmark-explorer.streamlit.app/" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-play-circle"></i></span>
                     <span>Demo</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
-                <span class="link-block">
+                <span class="link-block preview-link" data-preview-image="static/images/video.png">
                   <a href="https://www.youtube.com/watch?v=xA26rvhvo_c" target="_blank" rel="noopener noreferrer"
                      class="external-link button is-normal is-rounded is-dark">
                     <span class="icon"><i class="fas fa-video"></i></span>
                     <span>Video</span>
                   </a>
+                  <div class="preview-tooltip"></div>
                 </span>
               </div>
 
