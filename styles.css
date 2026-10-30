@@ -176,11 +176,11 @@ section:last-of-type { border-bottom: none; }
 
 .papers-category {
   font-family: var(--head);
-  font-size: 0.56rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--muted);
+  color: var(--ink);
   padding: 14px 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
@@ -207,16 +207,16 @@ section:last-of-type { border-bottom: none; }
   font-family: var(--head);
   font-size: 0.56rem;
   font-weight: 700;
-  color: var(--faint);
+  color: var(--muted);
   letter-spacing: 0.08em;
   transition: color .2s;
   flex-shrink: 0;
 }
-.paper:hover .paper-n { color: var(--muted); }
+.paper:hover .paper-n { color: var(--ink); }
 
 .paper-venue-tag {
   font-family: var(--head);
-  font-size: 0.56rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -276,6 +276,16 @@ section:last-of-type { border-bottom: none; }
   transition: opacity .2s, transform .25s;
   cursor: zoom-in;
 }
+/* landscape slides: two half-height rows, filled column by column */
+.page-strip--slides {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+}
+.page-strip--slides img,
+.page-strip--slides canvas { height: 118px; }
+
 .page-strip img:hover,
 .page-strip canvas:hover {
   opacity: .82;
@@ -516,6 +526,7 @@ footer {
   }
 
   .page-strip img, .page-strip canvas { height: 170px; }
+  .page-strip--slides img, .page-strip--slides canvas { height: 83px; }
 
   #contact-grid { grid-template-columns: 1fr; gap: 32px; }
   .teaching-list li { grid-template-columns: 1fr; gap: 6px; }

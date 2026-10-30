@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="83.5 -265 1530 1530">
+  <rect x="83.5" y="-265" width="1530" height="1530" rx="230" fill="#000"/>
+  <g fill="none">
+    <path stroke="#fff" stroke-width="18" d="M397.9 318A493 360.5 0 0 1 1249.1 318 M381.7 660A493 360.5 0 0 0 1265.3 660 M631.9 318A222 360.5 0 0 1 1015.1 318 M624.6 660A222 360.5 0 0 0 1022.4 660"/>
+    <path stroke="#000" stroke-width="60" d="M270.1 271H1376.9 M249.1 715.5H1397.9"/>
+    <path stroke="#fff" stroke-width="19" d="M270.1 271H1376.9 M249.1 715.5H1397.9"/>
+    <ellipse cx="823.5" cy="500" rx="716.5" ry="360.5" stroke="#fff" stroke-width="18"/>
+  </g>
+  <polygon fill="#fff" transform="translate(823.5 486) scale(2.1) translate(-816 -486)" points="710,556 710,416 743,416 816,517 889,416 922,416 922,556 889,556 889,470 827,556 805,556 743,470 743,556"/>
+</svg>
